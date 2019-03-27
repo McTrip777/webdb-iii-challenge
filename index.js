@@ -16,10 +16,10 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-server.get('/api/table', async (req, res) => {
+server.get('/api/cohort', async (req, res) => {
   try {
-    const table = await db('table'); 
-    res.status(200).json(table);
+    const cohort = await db('cohort'); 
+    res.status(200).json(cohort);
   } catch (error) {
     res.status(500).json(error);
   }
