@@ -1,4 +1,11 @@
 {
+  "name": "lambda.sqlite3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon"
+  },
   "dependencies": {
     "express": "^4.16.4",
     "helmet": "^3.16.0",
