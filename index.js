@@ -37,14 +37,29 @@ server.get('/api/cohort/:id', async (req, res) => {
   });
 
   server.get('/api/cohort/:id/student', async (req, res) => {
+      const id = req.params.id;
     try {
-      const cohort = await db('cohort')
-        .where({ id: req.params.id })
-        .first();
-      res.status(200).json(cohort);
+        const student = await db
+        .select('*')
+        .from('cohort')
+        .where({'cohort.id': id})
+        .join('student', {'cohort.id': 'student.cohortId'})
+        res.status(200).json(student);
     } catch (error) {
-      res.status(500).json(error);
+        res.status(500).json(error);
     }
+    // try {
+    //   const cohort = await db('cohort')
+    //     .where({ id: req.params.id })
+    //   const student = await db('student')
+    //     if(cohort.id === student.cohortId){
+    //         res.status(200).json(student);
+    //     }else{
+    //         res.status(404).json({message: 'No students in this Cohort'})
+    //     }
+    // } catch (error) {
+    //   res.status(500).json(error);
+    // }
   });
   
   server.post('/api/cohort', async (req, res) => {
